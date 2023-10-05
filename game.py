@@ -23,6 +23,7 @@ def random_predict(X):
 def score_game():
     count_ls = []  # Создаем пустой массив для ответов функции угадывания random_predict
     # загадали список чисел - создали массив чисел от 1 до 100 размеров в 1000 единиц
+    numpy.random.seed(1)  # фиксируем сид для воспроизводимости
     random_array = numpy.random.randint(1, 101, size=(1000))
 
     for number in random_array:  # Для кажого числа в нашем массиве случайных чисел делай:
