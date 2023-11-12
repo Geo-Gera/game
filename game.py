@@ -1,26 +1,36 @@
+
 import numpy
 
 
-def random_predict(X):
-    import random
+def random_predict(number: int = 1) -> int:
+    """угадываем значение, уменьшая диапазон значений в два раза.
+       Функция принимает загаданное число и возвращает число попыток
+
+    Args:
+        number (int, optional): Загаданное число. Defaults to 1.
+
+    Returns:
+        int: Число попыток
+    """
     L1 = 1  # Минимум
     L2 = 100  # Максимум
-    att = 20  # Количество попыток
+    attemption = 0  # Количество попыток
 
-    while att > 0:
-        att -= 1
+    while True:
+        attemption += 1
         step = (L1+L2) // 2  # Складываем минимум и максимум
-        if step > X:
+        if step > number:
             L2 = step - 1
-        elif step < X:
+        elif step < number:
             L1 = step + 1
-        elif X == step:
+        elif number == step:
             # print(X,"Число Угадано","за", att, "попыток")
             break
-    return att
+    return attemption
 
 
 def score_game():
+    import math
     count_ls = []  # Создаем пустой массив для ответов функции угадывания random_predict
     # загадали список чисел - создали массив чисел от 1 до 100 размеров в 1000 единиц
     numpy.random.seed(1)  # фиксируем сид для воспроизводимости
@@ -31,9 +41,9 @@ def score_game():
         count_ls.append(random_predict(number))
 
     # при помощи библиотеки numpy вызываем функицю mean вовзращающую среднее в массиве
-    score = int(numpy.mean(count_ls))
+    score = math.ceil(numpy.mean(count_ls))
     print(f"Ваш алгоритм угадывает число в среднем за:{score} попыток")
-    return score
+    
 
 
 if __name__ == "__main__":  # Запуск как главный модуль
