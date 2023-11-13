@@ -17,6 +17,8 @@ def random_predict(number: int = 1) -> int:
 
     while True:
         attemption += 1
+        if attemption >50:
+            break
         step = (L1+L2) // 2  # Складываем минимум и максимум
         if step > number:
             L2 = step - 1
